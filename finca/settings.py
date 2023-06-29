@@ -28,7 +28,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = ['127.0.0.1',
-                 'lasmirlas.azurewebsites.net']
+                 'https://lasmirlas.azurewebsites.net']
 
 
 INSTALLED_APPS = [
