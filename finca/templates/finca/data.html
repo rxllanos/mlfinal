@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block head_title %}
+Datos Operativos
+{% endblock %}
+
+{% block extra_head %}
+<script src="{% static 'data.js' %}"></script>
+{% endblock %}
+
+
+
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <table class="ui table">
+            <tbody>
+                <thead>
+                    <th scope="col">Tu perfil.</th>
+                </thead> 
+                <tr>
+                    <td>Nombre</td>
+                    <td>{{user.first_name}}</td>
+                </tr>
+                <tr>
+                    <td>Apellido</td>
+                    <td>{{user.last_name}}</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>{{user.email}}</td>
+                </tr>  
+                <tr>
+                    <td id="csrf">Pendientes</td>
+                    <td><button class="btn btn-primary btn-sm" data-page="Pendientes"> Ver Tareas! </button></td>
+                </tr>  
+                <tr>
+                    <td>Inventario</td>
+                    <td><button class="btn btn-primary btn-sm" data-page="Inventario"> Ver inventario! </button></td>
+                </tr>                               
+            </tbody>  
+        </table>
+
+    {% else %}  
+
+        <h1>Registrate!</h1>
+
+    {% endif %}   
+
+<div class="container">
+    <div class="row justify-content-sm-center">
+        <div class="col-sm-10">
+            <div id="Pendientes">
+                
+                <h5> {{tasks_missing.count}} pendientes,  {{ tasks.count }} totales. </h5>  
+                {% if tasks.count %}
+                <h2> PENDIENTES </h2>
+                <div id="task_list"></div> 
+                {% else %} 
+                <h2> NOY HAY PENDIENTES </h2>
+                {% endif %}  
+            </div>    
+            <div id="Inventario">
+                <h2> Inventario </h2>
+                <div id="inventario"></div> 
+                <h2> NOY HAY INVENTARIO </h2>
+            </div>   
+        </div>
+    </div>
+</div>
+
+<p>{% csrf_token %}</p>
+
+
+{% endblock %}   

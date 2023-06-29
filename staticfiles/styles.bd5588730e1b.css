@@ -1,0 +1,58 @@
+@keyframes grow {
+    0% {
+        font-size: 20px;
+    }
+
+    50% {
+        font-size: 40px;
+    }
+
+    100% {
+        font-size: 20px;
+    }
+}
+
+
+h1 {
+    font-family: sans-serif;
+    color: blue;
+    font-size: 40px;
+    text-align: center;
+    animation-name: grow;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;   
+    animation-iteration-count: 3;
+    
+}
+
+
+
+body{
+    background-color: #90ee90;
+}
+
+li{
+    margin: 5px;
+    padding: 2px;
+
+}
+
+#video {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
+    width: 100%;
+    height: auto;    
+}
+
+.image-thumbail {
+    height: 200px;
+    object-fit: cover;
+}
+
+.list-group-item a {
+    text-decoration: none;
+    color: black;
+}

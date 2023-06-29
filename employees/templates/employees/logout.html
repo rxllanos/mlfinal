@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1> Log out</h1>
+<div>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <a href="{% url 'employees:login' %}">Entra a tu cuenta</a>
+    <a href="{% url 'home' %}">Pagina inicial</a>
+</div>
+<br/><br/>
+
+
+{% endblock %}   
