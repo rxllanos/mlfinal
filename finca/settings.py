@@ -31,6 +31,8 @@ ALLOWED_HOSTS = ['127.0.0.1',
                  'lasmirlas.azurewebsites.net']
 
 
+CSRF_TRUSTED_ORIGINS=['lasmirlas.azurewebsites.net']
+
 INSTALLED_APPS = [
     'inventory',
     'tasks',
