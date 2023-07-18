@@ -32,8 +32,8 @@ ALLOWED_HOSTS = ['127.0.0.1',
                  'lasmirlas.com']
 
 
-CSRF_TRUSTED_ORIGINS=['lasmirlas.azurewebsites.net',
-                      'lasmirlas.com']
+CSRF_TRUSTED_ORIGINS=['https://lasmirlas.azurewebsites.net',
+                      'https://lasmirlas.com']
 
 INSTALLED_APPS = [
     'inventory',

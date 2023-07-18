@@ -16,12 +16,19 @@ Home
   <div class="row align-items-start">
         <h1> Las Mirlas</h1>
         <p> Ubicacion: Km 2.5 Siberia via Tenjo Parcelacion Puente Pierdra</p>
-        <div class="row align-items-start" id="video">
+        {% if user.is_authenticated %}
+        <div class="text-center" id="video">
                 <video class="img-fluid" controls  autoplay poster="{% static 'logo.png' %}">
                 <source src="{% static 'LasMirlas.mp4' %}" type="video/mp4">
                 Your browser does not support the video tag.
                 </video>
-        </div>      
+        </div>  
+        {% else %}    
+        <div class="text-center">
+            <img src="{% static 'logo.png' %}" alt="Logo" width="400" height="400" class="rounded"> 
+        </div>    
+
+        {% endif %}            
   </div>
 </div>
 </br>
