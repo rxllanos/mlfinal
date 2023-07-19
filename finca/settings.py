@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 from decouple import config
+from .azure_storage import AzureMediaStorage, AzureStaticStorage
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -127,19 +128,36 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = 'static/'
-MEDIA_URL = '/images/'
+# STATIC_URL = 'static/'
+# MEDIA_URL = '/images/'
+
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR,'finca','static'),
+# ]
+
+# MEDIA_ROOT = BASE_DIR / 'static/images'
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,'finca','static'),
-]
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-MEDIA_ROOT = BASE_DIR / 'static/images'
+# django >= 4.2
+STORAGES = {
+    "default": {"BACKEND": "finca.azure_storage.AzureMediaStorage"},
+    "staticfiles": {"BACKEND": "finca.azure_storage.AzureStaticStorage"},
+}
+
+AZURE_ACCOUNT_NAME = config('AZURE_ACCOUNT_NAME')
+AZURE_ACCOUNT_KEY = config('AZURE_ACCOUNT_KEY')
+AZURE_CUSTOM_DOMAIN = f'{AZURE_ACCOUNT_NAME}.blob.core.windows.net'
+
+STATIC_URL = f'https://{AZURE_CUSTOM_DOMAIN}/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+MEDIA_URL = f'https://{AZURE_CUSTOM_DOMAIN}/media/'
+MEDIA_ROOT = BASE_DIR / 'mediafiles'
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

@@ -17,7 +17,7 @@ Home
         <h1> Las Mirlas</h1>
         <p> Ubicacion: Km 2.5 Siberia via Tenjo Parcelacion Puente Pierdra</p>
         {% if user.is_authenticated %}
-        <div class="text-center" id="video">
+        <div id="video">
                 <video class="img-fluid" controls  autoplay poster="{% static 'logo.png' %}">
                 <source src="{% static 'LasMirlas.mp4' %}" type="video/mp4">
                 Your browser does not support the video tag.
