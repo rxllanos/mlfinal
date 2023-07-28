@@ -32,13 +32,21 @@ Datos Operativos
                     <td>{{user.email}}</td>
                 </tr>  
                 <tr>
-                    <td id="csrf">Pendientes</td>
-                    <td><button class="btn btn-primary btn-sm" data-page="Pendientes"> Ver Tareas! </button></td>
+                    <td id="csrf"> Lista Pendientes</td>
+                    <td><button class="btn btn-primary btn-sm" data-page="Pendientes"> Ver! </button></td>
                 </tr>  
                 <tr>
-                    <td>Inventario</td>
-                    <td><button class="btn btn-primary btn-sm" data-page="Inventario"> Ver inventario! </button></td>
-                </tr>                               
+                    <td>Lista de Compras pendientes</td>
+                    <td><button class="btn btn-primary btn-sm" data-page="Inventario"> Ver! </button></td>
+                </tr> 
+                <tr>
+                    <td id="csrf"> Nuevo Pendiente</td>
+                    <td><button class="btn btn-primary btn-sm" data-page="PForm"> Registrar! </button></td>
+                </tr>  
+                <tr>
+                    <td>Nueva Compra</td>
+                    <td><button class="btn btn-primary btn-sm" data-page="IForm"> Registrar! </button></td>
+                </tr>                          
             </tbody>  
         </table>
 
@@ -51,8 +59,7 @@ Datos Operativos
 <div class="container">
     <div class="row justify-content-sm-center">
         <div class="col-sm-10">
-            <div id="Pendientes">
-                
+            <div id="Pendientes">              
                 <h5> {{tasks_missing.count}} pendientes,  {{ tasks.count }} totales. </h5>  
                 {% if tasks.count %}
                 <h2> PENDIENTES </h2>
@@ -60,12 +67,39 @@ Datos Operativos
                 {% else %} 
                 <h2> NOY HAY PENDIENTES </h2>
                 {% endif %}  
-            </div>    
-            <div id="Inventario">
-                <h2> Inventario </h2>
-                <div id="inventario"></div> 
-                <h2> NOY HAY INVENTARIO </h2>
             </div>   
+
+            <div id="Inventario">
+                <h5> Total: {{ carts.count }}. </h5>
+                {% if carts.count %}
+                <h2> Inventario</h2>
+                <div id="inventory_list"></div> 
+                {% else %} 
+                <h2> NOY HAY INVENTARIO </h2>
+                {% endif %}  
+            </div>  
+            
+            <div id="PForm">  
+                    <h1>Add Task:</h1>
+                    {% comment %} <form action="{% url 'tasks:add' %}" method="post">
+                        {% csrf_token %}
+                        {{ formT.as_p }}
+                        <input type="submit">
+                    </form>
+                    <a href="{% url 'home' %}">Home</a> {% endcomment %}
+            </div> 
+            <div id="IForm">  
+                    <h1>Add Shopping Item:</h1>
+                    {% comment %} <form action="{% url 'inventory:add' %}" method="post">
+                        {% csrf_token %}
+                        {{ formI.as_p }}
+                        <input type="submit">
+                    </form>
+                    <a href="{% url 'home' %}">Home</a> {% endcomment %}
+            </div> 
+
+
+
         </div>
     </div>
 </div>

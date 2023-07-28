@@ -3,12 +3,13 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 class Task_name(models.Model):
+    name = models.CharField(max_length=100, null=False, blank=False)
     class Meta:
         verbose_name = 'TaskName'
         verbose_name_plural = 'TaskNames'
-    name = models.CharField(max_length=100, null=False, blank=False)
+        ordering = ["name"]
     def __str__(self):
-        return self.name
+        return f"{self.name}"
 
 class task(models.Model): 
     responsable = models.ForeignKey(User, on_delete=models.CASCADE, default="TBA" , null=True, blank=True, related_name="asignee")
@@ -20,7 +21,7 @@ class task(models.Model):
     fecha_terminado = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.title}... Completado? {self.tcompletado} (Y/N)"
+        return f"category : {self.category}, id:{self.id}, {self.title}... Completado? {self.tcompletado} (Y/N)"
 
     def completado(self):
         if self.tcompletado:
@@ -29,6 +30,4 @@ class task(models.Model):
             return "NO"
         
     class Meta:
-        ordering = ['tcompletado']
-
-
+        ordering = ["category","tcompletado"]

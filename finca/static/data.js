@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('#Inventario').style.display = 'none';
     document.querySelector('#Pendientes').style.display = 'none';
+    document.querySelector('#IForm').style.display = 'none';
+    document.querySelector('#PForm').style.display = 'none';
     document.querySelectorAll('button').forEach(button => {button.onclick = function() {
             showPage(this.dataset.page);
         }
@@ -8,8 +10,11 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function showPage(page) {
+    console.log('hi');
     document.querySelector('#Pendientes').style.display = 'none';
     document.querySelector('#Inventario').style.display = 'none';
+    document.querySelector('#IForm').style.display = 'none';
+    document.querySelector('#PForm').style.display = 'none';
 
     if(page === 'Pendientes') {
       document.querySelector('#Pendientes').style.display = 'block';
@@ -17,19 +22,44 @@ function showPage(page) {
       }
     if(page === 'Inventario') {
       document.querySelector('#Inventario').style.display = 'block';
-      finventario();
+      // finventario();
       }  
-
+    if(page === 'PForm') {
+      document.querySelector('#PForm').style.display = 'block';
+      }
+    if(page === 'IForm') {
+      document.querySelector('#IForm').style.display = 'block';
+      }  
 }
 
-function finventario(){
-}
+// function finventario(){
+//   document.querySelector('#inventory_list').innerHTML ='hi'; 
+//   fetch('/inventory/inventory-list/')
+//   .then(response => response.json())
+//   .then(data => {
+//     data.forEach(item => {
+//               const inventory_entry = document.createElement('div');
+//               inventory_entry.className = 'inventory_entry';
+//               inventory_entry.innerHTML += ` Categoria: ${item.group_set}, Tienda: ${item.group_set1}, Producto : ${item.product} , Cantidad : ${item.quantity} . `;
+//               var btn = document.createElement("BUTTON");
+//               btn.setAttribute = ("class", "negative ui button");   
+//               btn.innerHTML = "Borrar";   
+//               btn.className = "delinventory";
+//               btn.value = item.id;               
+//               inventory_entry.appendChild(btn);
+//               document.querySelector('#inventory_list').append(inventory_entry);  
+//       })
+//   })
+//   .catch(error => {
+//       console.log('Error:', error);
+//   });
+// }
 
 
 function fPendientes(){
-    document.querySelector('#Pendientes').style.display = 'none';
-    document.querySelector('#Pendientes').style.display = 'block';
-    // document.querySelector('#task_list').innerHTML =''; 
+    // document.querySelector('#Pendientes').style.display = 'none';
+    // document.querySelector('#Pendientes').style.display = 'block';
+    document.querySelector('#task_list').innerHTML =''; 
     fetch('/tasks/task-list/')
     .then(response => response.json())
     .then(data => {
@@ -70,6 +100,7 @@ function fPendientes(){
                 task_entry.style.backgroundColor = "#FDFEFE";
                 }
                 document.querySelector('#task_list').append(task_entry);  
+                
         })
     })
     .catch(error => {
@@ -114,4 +145,22 @@ document.addEventListener('click', event => {
           }, 3000)
         );   
     } 
+
+    // if (element.className === 'delinventory') {
+    //   fetch(`inventory/inventory-delete/${element.value}/`, {
+    //     method: 'DELETE',
+    //     headers: {
+    //           'Content-Type':'application/json',
+    //           'X-CSRFToken': csrf_token,
+    //     },
+    //     body: JSON.stringify({
+    //     })
+    //   }) 
+    //   .then(
+    //     setTimeout(function() {
+    //       window.location.reload();
+    //     }, 3000)
+    //   );   
+    // }
+
 })

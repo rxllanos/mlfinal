@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .serializer import taskserializer
+from .forms import TaskForm
 from .models import task, Task_name
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.contrib import messages
 
 @api_view(['GET'])
 def apiOverview(request):
@@ -42,3 +44,16 @@ def taskDelete(request,pk):
     task1 = task.objects.get(id=pk)
     task1.delete()
     return Response('item deleted')
+
+
+def add(request):
+    if request.method == "POST":
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            task = form.cleaned_data["task"]
+            task.save()
+            messages.success(request, ('Pendiente incluido!'))
+            return redirect('data')
+        else:
+            messages.success(request, ('Try again!'))
+            return redirect('data')

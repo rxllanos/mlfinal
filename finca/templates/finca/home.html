@@ -12,74 +12,72 @@ Home
 
 {% block content %}
 
-<div class="container text-center">
-  <div class="row align-items-start">
-        <h1> Las Mirlas</h1>
-        <p> Ubicacion: Km 2.5 Siberia via Tenjo Parcelacion Puente Pierdra</p>
+<div class="container-md">
+    <div class="row justify-content-md-center">
+        <div "col-sm-auto" >
+            <h1> Las Mirlas</h1>
+            <p> Ubicacion: Km 2.5 Siberia via Tenjo Parcelacion Puente Pierdra</p>
+        </div>
+    </div>   
+    <div class="row justify-content-md-center">
         {% if user.is_authenticated %}
-        <div id="video">
-                <video class="img-fluid" controls  autoplay poster="{% static 'logo.png' %}">
-                <source src="{% static 'LasMirlas.mp4' %}" type="video/mp4">
-                Your browser does not support the video tag.
-                </video>
-        </div>  
+        <div "col-md-auto" >
+            <video class="img-fluid" controls  autoplay poster="{% static 'logo.png' %}">
+            <source src="{% static 'LasMirlas.mp4' %}" type="video/mp4">
+            Your browser does not support the video tag.
+            </video>     
+        </div>
         {% else %}    
-        <div class="text-center">
-            <img src="{% static 'logo.png' %}" alt="Logo" width="400" height="400" class="rounded"> 
-        </div>    
-
-        {% endif %}            
-  </div>
+        <div "col-md-auto" >
+            <img src="{% static 'logo.png' %}" alt="Logo" class="rounded">   
+        </div> 
+        {% endif %}  
+    </div>           
 </div>
+
+</br>
 </br>
 
-<div class="m-5">
-  <div class="container">
-      <div class="row">
-          <div class="col-md-3">
-              <div class="card">
-                  <div class="card-header">
-                      Categories
-                  </div>
-                  <ul class="list-group list-group-flush">
-                      <li class="list-group-item">
-                          <a href="{% url 'photo:gallery' %}">All</a>
-                      </li>
-                      {% for category in categories %}
-                      <li class=" list-group-item">
-                          <a href="{% url 'photo:gallery' %}?category={{category.name}}">
-                              {{category.name}}
-                          </a>
-                      </li>
-                      {% endfor %}
 
+<div class="container">
+    <div class="row align-items-start">
+        <div class="col-sm-auto">
+            <div class="card">
+                <div class="card-header">
+                    Categories
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <a href="{% url 'photo:gallery' %}">All</a>
+                    </li>
+                    {% for category in categories %}
+                    <li class=" list-group-item">
+                        <a href="{% url 'photo:gallery' %}?category={{category.name}}">
+                            {{category.name}}
+                        </a>
+                    </li>
+                    {% endfor %}
+                    <a href="{% url 'photo:add' %}" class="btn btn-dark btn-block btn-sm m-1">Sube fotos!</a>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-auto">
+                {% for photo in photos %}
+                <div class="col-sm-auto">
+                    <div class="card my-2">
+                        <img class="image-thumbail" src="{{photo.image.url}}" alt="Card image cap">
 
-                      <a href="{% url 'photo:add' %}" class="btn btn-dark btn-block btn-sm m-1">Sube fotos!</a>
-                  </ul>
-              </div>
-
-          </div>
-          <div class="col-md-9">
-              <div class="row">
-
-                  {% for photo in photos %}
-                  <div class="col-md-4">
-                      <div class="card my-2">
-                          <img class="image-thumbail" src="{{photo.image.url}}" alt="Card image cap">
-
-                          <div class="card-body">
-                              <small>Category: {{photo.category.name}}</small>
-                          </div>
-                          <a href="{% url 'photo:photo' photo.id %}" class="btn btn-outline-dark btn-sm m-1">View</a>
-                      </div>
-                  </div>
-                  {% empty %}
-                  <h3>No photos...</h3>
-                  {% endfor %}
-              </div>
-          </div>
-      </div>
-  </div>
+                        <div class="card-body">
+                            <small>Category: {{photo.category.name}}</small>
+                        </div>
+                        <a href="{% url 'photo:photo' photo.id %}" class="btn btn-outline-dark btn-sm m-1">View</a>
+                    </div>
+                </div>
+                {% empty %}
+                <h3>No photos...</h3>
+                {% endfor %}
+        </div>
+    </div>
 </div>
 
 {% endblock %}   

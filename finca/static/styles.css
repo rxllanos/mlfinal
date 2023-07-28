@@ -37,16 +37,6 @@ li{
 
 }
 
-#video {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    margin: 5px;
-    padding: 5px;
-    width: auto;
-    height: 400px;    
-}
-
 .image-thumbail {
     height: 200px;
     object-fit: cover;
