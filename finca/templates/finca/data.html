@@ -1,5 +1,6 @@
 {% extends 'layout.html' %}
 {% load static %}
+{% load crispy_forms_tags %} 
 
 {% block head_title %}
 Datos Operativos
@@ -81,21 +82,21 @@ Datos Operativos
             
             <div id="PForm">  
                     <h1>Add Task:</h1>
-                    {% comment %} <form action="{% url 'tasks:add' %}" method="post">
+                    <form action="{% url 'tasks:add' %}" method="post">
                         {% csrf_token %}
-                        {{ formT.as_p }}
+                        {{ formT.as_p|crispy }}
                         <input type="submit">
                     </form>
-                    <a href="{% url 'home' %}">Home</a> {% endcomment %}
+                    <a href="{% url 'home' %}">Home</a> 
             </div> 
             <div id="IForm">  
                     <h1>Add Shopping Item:</h1>
-                    {% comment %} <form action="{% url 'inventory:add' %}" method="post">
+                    <form action="{% url 'inventory:add' %}" method="post">
                         {% csrf_token %}
-                        {{ formI.as_p }}
+                        {{ formI.as_p|crispy }}
                         <input type="submit">
                     </form>
-                    <a href="{% url 'home' %}">Home</a> {% endcomment %}
+                    <a href="{% url 'home' %}">Home</a> 
             </div> 
 
 

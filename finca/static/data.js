@@ -32,28 +32,28 @@ function showPage(page) {
       }  
 }
 
-// function finventario(){
-//   document.querySelector('#inventory_list').innerHTML ='hi'; 
-//   fetch('/inventory/inventory-list/')
-//   .then(response => response.json())
-//   .then(data => {
-//     data.forEach(item => {
-//               const inventory_entry = document.createElement('div');
-//               inventory_entry.className = 'inventory_entry';
-//               inventory_entry.innerHTML += ` Categoria: ${item.group_set}, Tienda: ${item.group_set1}, Producto : ${item.product} , Cantidad : ${item.quantity} . `;
-//               var btn = document.createElement("BUTTON");
-//               btn.setAttribute = ("class", "negative ui button");   
-//               btn.innerHTML = "Borrar";   
-//               btn.className = "delinventory";
-//               btn.value = item.id;               
-//               inventory_entry.appendChild(btn);
-//               document.querySelector('#inventory_list').append(inventory_entry);  
-//       })
-//   })
-//   .catch(error => {
-//       console.log('Error:', error);
-//   });
-// }
+function finventario(){
+  document.querySelector('#inventory_list').innerHTML ='hi'; 
+  fetch('/inventory/inventory-list/')
+  .then(response => response.json())
+  .then(data => {
+    data.forEach(item => {
+              const inventory_entry = document.createElement('div');
+              inventory_entry.className = 'inventory_entry';
+              inventory_entry.innerHTML += ` Categoria: ${item.group_set}, Tienda: ${item.group_set1}, Producto : ${item.product} , Cantidad : ${item.quantity} . `;
+              var btn = document.createElement("BUTTON");
+              btn.setAttribute = ("class", "negative ui button");   
+              btn.innerHTML = "Borrar";   
+              btn.className = "delinventory";
+              btn.value = item.id;               
+              inventory_entry.appendChild(btn);
+              document.querySelector('#inventory_list').append(inventory_entry);  
+      })
+  })
+  .catch(error => {
+      console.log('Error:', error);
+  });
+}
 
 
 function fPendientes(){
@@ -146,21 +146,21 @@ document.addEventListener('click', event => {
         );   
     } 
 
-    // if (element.className === 'delinventory') {
-    //   fetch(`inventory/inventory-delete/${element.value}/`, {
-    //     method: 'DELETE',
-    //     headers: {
-    //           'Content-Type':'application/json',
-    //           'X-CSRFToken': csrf_token,
-    //     },
-    //     body: JSON.stringify({
-    //     })
-    //   }) 
-    //   .then(
-    //     setTimeout(function() {
-    //       window.location.reload();
-    //     }, 3000)
-    //   );   
-    // }
+    if (element.className === 'delinventory') {
+      fetch(`inventory/inventory-delete/${element.value}/`, {
+        method: 'DELETE',
+        headers: {
+              'Content-Type':'application/json',
+              'X-CSRFToken': csrf_token,
+        },
+        body: JSON.stringify({
+        })
+      }) 
+      .then(
+        setTimeout(function() {
+          window.location.reload();
+        }, 3000)
+      );   
+    }
 
 })
