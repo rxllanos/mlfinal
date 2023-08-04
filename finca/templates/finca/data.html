@@ -14,58 +14,78 @@ Datos Operativos
 
 
 {% block content %}
-    {% if user.is_authenticated %}
-        <table class="ui table">
-            <tbody>
-                <thead>
-                    <th scope="col">Tu perfil.</th>
-                </thead> 
-                <tr>
-                    <td>Nombre</td>
-                    <td>{{user.first_name}}</td>
-                </tr>
-                <tr>
-                    <td>Apellido</td>
-                    <td>{{user.last_name}}</td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td>{{user.email}}</td>
-                </tr>  
-                <tr>
-                    <td id="csrf"> Lista Pendientes</td>
-                    <td><button class="btn btn-primary btn-sm" data-page="Pendientes"> Ver! </button></td>
-                </tr>  
-                <tr>
-                    <td>Lista de Compras pendientes</td>
-                    <td><button class="btn btn-primary btn-sm" data-page="Inventario"> Ver! </button></td>
-                </tr> 
-                <tr>
-                    <td id="csrf"> Nuevo Pendiente</td>
-                    <td><button class="btn btn-primary btn-sm" data-page="PForm"> Registrar! </button></td>
-                </tr>  
-                <tr>
-                    <td>Nueva Compra</td>
-                    <td><button class="btn btn-primary btn-sm" data-page="IForm"> Registrar! </button></td>
-                </tr>                          
-            </tbody>  
-        </table>
 
-    {% else %}  
+</br>
+</br>
 
-        <h1>Registrate!</h1>
-
-    {% endif %}   
 
 <div class="container">
     <div class="row justify-content-sm-center">
-        <div class="col-sm-10">
-            <div id="Pendientes">              
+        <div class="col-md-6">
+        {% if user.is_authenticated %}
+            <table class="ui table">
+                <tbody>
+                    <thead>
+                        <th scope="col">Tu perfil.</th>
+                    </thead> 
+                    <tr>
+                        <td>Nombre</td>
+                        <td>{{user.first_name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Apellido</td>
+                        <td>{{user.last_name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>{{user.email}}</td>
+                    </tr>  
+                    <tr>
+                        <td id="csrf"> Lista Pendientes</td>
+                        <td><button class="btn btn-primary btn-sm" data-page="Pendientes"> Ver! </button></td>
+                    </tr>  
+                    <tr>
+                        <td>Lista de Compras pendientes</td>
+                        <td><button class="btn btn-primary btn-sm" data-page="Inventario"> Ver! </button></td>
+                    </tr> 
+                    <tr>
+                        <td id="csrf"> Nuevo Pendiente</td>
+                        <td><button class="btn btn-primary btn-sm" data-page="PForm"> Registrar! </button></td>
+                    </tr>  
+                    <tr>
+                        <td>Nueva Compra</td>
+                        <td><button class="btn btn-primary btn-sm" data-page="IForm"> Registrar! </button></td>
+                    </tr>                          
+                </tbody>
+                    </br>
+                    </br>                      
+            </table>
+            </br>
+            </br>             
+        {% else %}  
+
+            <h1>Registrate!</h1>
+            </br>
+            </br>
+        {% endif %}              
+        </div>
+
+    </div>
+</div>
+
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class=="col-7">
+            <div id="Pendientes">    
+            </br>          
                 <h5> {{tasks_missing.count}} pendientes,  {{ tasks.count }} totales. </h5>  
                 {% if tasks.count %}
+            </br>
                 <h2> PENDIENTES </h2>
+            </br>
                 <div id="task_list"></div> 
                 {% else %} 
+            </br>
                 <h2> NOY HAY PENDIENTES </h2>
                 {% endif %}  
             </div>   
@@ -79,31 +99,32 @@ Datos Operativos
                 <h2> NOY HAY INVENTARIO </h2>
                 {% endif %}  
             </div>  
-            
-            <div id="PForm">  
-                    <h1>Add Task:</h1>
-                    <form action="{% url 'tasks:add' %}" method="post">
-                        {% csrf_token %}
-                        {{ formT.as_p|crispy }}
-                        <input type="submit">
-                    </form>
-                    <a href="{% url 'home' %}">Home</a> 
-            </div> 
-            <div id="IForm">  
-                    <h1>Add Shopping Item:</h1>
-                    <form action="{% url 'inventory:add' %}" method="post">
-                        {% csrf_token %}
-                        {{ formI.as_p|crispy }}
-                        <input type="submit">
-                    </form>
-                    <a href="{% url 'home' %}">Home</a> 
-            </div> 
-
-
-
         </div>
     </div>
 </div>
+
+<div class="container text-center">  
+    <div class="row justify-content-center">
+        <div id="PForm" class="col-3">
+            <h3>Add Task:</h3>
+            <form action="{% url 'tasks:add' %}" method="post">
+                {% csrf_token %}
+                {{formT|crispy}}
+                <input type="submit">
+            </form>
+            <a href="{% url 'home' %}">Home</a> 
+        </div>
+       <div id="IForm" class="col-3">
+            <h3>Add Shopping Item:</h3>
+            <form action="{% url 'inventory:add' %}" method="post">
+                {% csrf_token %}
+                {{formI|crispy}}
+                <input type="submit">
+            </form>
+            <a href="{% url 'home' %}">Home</a> 
+        </div>        
+    </div> 
+</div> 
 
 <p>{% csrf_token %}</p>
 

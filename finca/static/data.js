@@ -22,7 +22,7 @@ function showPage(page) {
       }
     if(page === 'Inventario') {
       document.querySelector('#Inventario').style.display = 'block';
-      // finventario();
+      finventario();
       }  
     if(page === 'PForm') {
       document.querySelector('#PForm').style.display = 'block';
@@ -33,7 +33,8 @@ function showPage(page) {
 }
 
 function finventario(){
-  document.querySelector('#inventory_list').innerHTML ='hi'; 
+  console.log('hi2');
+  document.querySelector('#inventory_list').innerHTML =''; 
   fetch('/inventory/inventory-list/')
   .then(response => response.json())
   .then(data => {
@@ -55,10 +56,7 @@ function finventario(){
   });
 }
 
-
 function fPendientes(){
-    // document.querySelector('#Pendientes').style.display = 'none';
-    // document.querySelector('#Pendientes').style.display = 'block';
     document.querySelector('#task_list').innerHTML =''; 
     fetch('/tasks/task-list/')
     .then(response => response.json())

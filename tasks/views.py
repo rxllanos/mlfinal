@@ -50,8 +50,7 @@ def add(request):
     if request.method == "POST":
         form = TaskForm(request.POST)
         if form.is_valid():
-            task = form.cleaned_data["task"]
-            task.save()
+            form.save()
             messages.success(request, ('Pendiente incluido!'))
             return redirect('data')
         else:

@@ -47,8 +47,7 @@ def add(request):
     if request.method == "POST":
         form = InventoryForm(request.POST)
         if form.is_valid():
-            inventory = form.cleaned_data["Cart"]
-            inventory.save()
+            form.save()
             messages.success(request, ('Item incluido!'))
             return redirect('data')
         else:
