@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function showPage(page) {
-    console.log('hi');
     document.querySelector('#Pendientes').style.display = 'none';
     document.querySelector('#Inventario').style.display = 'none';
     document.querySelector('#IForm').style.display = 'none';
