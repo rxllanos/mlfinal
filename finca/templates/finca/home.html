@@ -19,14 +19,14 @@ Home
             <p> Ubicacion: Km 2.5 Siberia via Tenjo Parcelacion Puente Pierdra</p>
         </div>
         {% if user.is_authenticated %}
-        <div class="col-4" >
+        <div class="col-5" >
             <video class="img-fluid" controls  autoplay poster="{% static 'logo.png' %}">
             <source src="{% static 'LasMirlas.mp4' %}" type="video/mp4">
             Your browser does not support the video tag.
             </video>     
         </div>
         {% else %}    
-        <div class="col-md-4" >
+        <div class="col-5" >
             <img src="{% static 'logo.png' %}" alt="Logo" class="rounded">   
         </div> 
         {% endif %}  
@@ -70,7 +70,9 @@ Home
             </div>
         </div>
         {% empty %}
-        <h3>No photos...</h3>
+        <div class="col-6">
+            <h3>No photos...</h3>
+        </div>
         {% endfor %}
     </div>
 </div>
