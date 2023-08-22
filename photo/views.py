@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Category, Photo
 from django.contrib.auth.decorators import login_required
-# Create your views here.
+from django.core.paginator import Paginator
 
 
 def gallery(request):
@@ -11,9 +11,10 @@ def gallery(request):
         photos = Photo.objects.all()
     else:
         photos = Photo.objects.filter(category__name=category)
-
-    context = {'categories': categories, 'photos': photos}  
-    return render(request,'home.html', {'categories': categories, 'photos': photos})
+    paginator = Paginator(photos, 10)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+    return render(request,'home.html', {'categories': categories, 'photos': photos, 'page_obj': page_obj})
 
 
 def viewPhoto(request, pk):

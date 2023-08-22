@@ -14,9 +14,9 @@ ALLOWED_HOSTS = ['127.0.0.1',
                  'lasmirlasfinal.onrender.com']
 
 
-CSRF_TRUSTED_ORIGINS=['lasmirlas.azurewebsites.net',
-                      'lasmirlas.com',
-                      'lasmirlasfinal.onrender.com']
+CSRF_TRUSTED_ORIGINS=['https://lasmirlas.azurewebsites.net',
+                      'https://lasmirlas.com',
+                      'https://lasmirlasfinal.onrender.com']
 
 INSTALLED_APPS = [
     'inventory',
