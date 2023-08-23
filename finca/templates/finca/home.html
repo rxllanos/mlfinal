@@ -19,14 +19,14 @@ Home
         </div>
         {% if user.is_authenticated %}
         <div class="col-5" >
-            <video class="img-fluid" controls  autoplay poster="{% static 'logo.png' %}">
+            <video class="img-fluid" controls  autoplay poster="{% static '1B.jpeg' %}">
             <source src="{% static 'LasMirlas.mp4' %}" type="video/mp4">
             Your browser does not support the video tag.
             </video>     
         </div>
         {% else %}    
         <div class="col-5" >
-            <img src="{% static 'logo.png' %}" alt="Logo" class="rounded">   
+            <img src="{% static '1B.jpeg' %}" alt="Logo" class="img-fluid">   
         </div> 
         {% endif %}  
     </div>           
@@ -74,27 +74,7 @@ Home
             <h3>No photos...</h3>
         </div>
         {% endfor %}
-        <div class="col align-self-end">
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <span class="step-links">
-                        {% if page_obj.has_previous %}
-                        <li class="page-item"><a class="page-link" href="{% url 'photo:gallery' page=1 %}">&laquo; first</a></li>
-                        <li class="page-item"><a class="page-link" href="{% url 'photo:gallery' page=page_obj.previous_page_number %}">previous</a></li>
-                        {% endif %}
-                
-                        <span class="current">
-                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                        </span>
-                
-                        {% if page_obj.has_next %}
-                        <li class="page-item"><a class="page-link" href="{% url 'photo:gallery' page=page_obj.next_page_number %}">next</a></li>
-                        <li class="page-item"><a class="page-link" href="{% url 'photo:gallery' page=page_obj.paginator.num_pages %}">last &raquo;</a></li>
-                        {% endif %}
-                    </span>
-                </ul>
-            </nav> 
-        </div>      
+    
     </div>
 </div>
 
@@ -104,7 +84,7 @@ Home
 
 <div class="container text-center">
     <div class="row align-items-end">
-      <div class="col align-self-center">
+      <div class="col align-self-center" style="background-color:black;color:white;">
         <p> Ubicacion: Km 2.5 Siberia via Tenjo Parcelacion Puente Pierdra</p>
       </div>
     </div>
