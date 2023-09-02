@@ -10,12 +10,12 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = ['127.0.0.1',
-                 'lasmirlas.com',
-                 'lasmirlasfinal.onrender.com']
+                 'lasmirlasfinal.onrender.com',
+                 'lasmirlasfinca.com']
 
 
 CSRF_TRUSTED_ORIGINS=['https://lasmirlas.azurewebsites.net',
-                      'https://lasmirlas.com',
+                      'https://lasmirlasfinca.com',
                       'https://lasmirlasfinal.onrender.com']
 
 INSTALLED_APPS = [
